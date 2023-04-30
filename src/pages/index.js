@@ -38,7 +38,7 @@ function Cat({url, fact}) {
 
   return (
     <>
-      <figure className='w-1/2 max-w-3xl'>
+      <figure className='w-1/2 max-w-3xl rounded overflow-hidden shadow-lg bg-zinc-50'>
           <Image
             src={url}
             alt="A cat."
@@ -48,8 +48,9 @@ function Cat({url, fact}) {
             className="w-full object-cover"
             onClick={openModal}
           />
-          {/* <img src={url} alt="A cat." className='w-full object-cover'/> */}
-          <figcaption className='text-left'>{fact}</figcaption>
+          <div className='px-6 py-4'>
+            <figcaption className='text-gray-700 text-xl'>{fact}</figcaption>
+          </div>
       </figure>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -82,28 +83,19 @@ function Cat({url, fact}) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  {url}
+                  Comments
                 </Dialog.Title>
 
                 {
                   comments?.map(row => (
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        {row.comment}
-                      </p>
+                    <div className='grid grid-cols-3 gap-4 auto-cols-max'>
+                      <p className="mt-2 text-sm text-gray-500 col-span-1 text-violet-400">&#64;{row.username}&#58;</p>
+                      <p className="mt-2 text-sm text-gray-500 col-span-2 text-violet-900">{row.comment}</p>
                     </div>
                   ))
                 }
 
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
-                  >
-                    Close
-                  </button>
-                </div>
+
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -130,7 +122,7 @@ export default function Cats() {
   console.log(facts);
 
   return (
-    <div className='flex flex-col items-center gap-y-10'>
+    <div className='flex flex-col items-center gap-y-10 my-5'>
       {urls.map((url, index) => (
         <Cat
           url={url}
