@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
-import { supabase } from './supabaseClient';
+import { supabase } from '../supabaseClient';
 
 const inter = Inter({ subsets: ['latin'] })
 
