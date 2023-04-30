@@ -36,7 +36,7 @@ function Cat({url, fact}) {
 
   return (
     <>
-      <figure className='w-1/2 max-w-3xl rounded-lg overflow-hidden shadow-lg bg-zinc-50 my-4'>
+      <figure className='w-5/6 md:w-1/2 max-w-3xl rounded-lg overflow-hidden shadow-lg bg-zinc-50 my-4'>
           <Image
             src={url}
             alt="A cat."
@@ -86,7 +86,7 @@ function Cat({url, fact}) {
 
                 {
                   comments?.map(row => (
-                    <div key={row.id} className='grid grid-cols-3 gap-4 auto-cols-max'>
+                    <div key={row.id} className='grid grid-cols-3 gap-4 auto-cols-fr'>
                       <p className="mt-2 text-sm text-gray-500 col-span-1 text-violet-400">&#64;{row.username}&#58;</p>
                       <p className="mt-2 text-sm text-gray-500 col-span-2 text-violet-900">{row.comment}</p>
                     </div>
