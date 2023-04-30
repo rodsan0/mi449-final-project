@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState } from 'react'
+import { useQuery } from 'react-query'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { supabase } from '../supabaseClient';
@@ -25,16 +26,13 @@ function Cat({url, fact}) {
     setIsOpen(true);
   }
 
-
-  const [comments, setComments] = useState([]);
-  async function getComments() {
-    let { data: comms } = await supabase
+  const { data: comments } = useQuery(['cat_comments', url], async () => {
+    const { data } = await supabase
       .from('cat_comments')
       .select('*')
       .eq('url', url);
-      setComments(comms);
-  }
-  getComments();
+    return data;
+  });
 
   return (
     <>
@@ -107,26 +105,15 @@ function Cat({url, fact}) {
 }
 
 export default function Cats() {
-  const [urls, setUrls] = useState([]);
-  const [facts, setFacts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const [catUrls, catFacts] = await Promise.all([getCatUrls(), getCatFacts()]);
-      setUrls(catUrls);
-      setFacts(catFacts);
-    };
-    fetchData();
-  }, []);
-
-  console.log(facts);
+  const {data: urls} = useQuery('cat_urls', getCatUrls);
+  const {data: facts} = useQuery('cat_facts', getCatFacts);
 
   return (
     <div className='flex flex-col items-center gap-y-10 my-5'>
-      {urls.map((url, index) => (
+      {urls?.map((url, index) => (
         <Cat
           url={url}
-          fact={facts.data[index]}
+          fact={facts?.data[index]}
           key={index}
         />
       ))}
