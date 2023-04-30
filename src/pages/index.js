@@ -36,7 +36,7 @@ function Cat({url, fact}) {
 
   return (
     <>
-      <figure className='w-1/2 max-w-3xl rounded overflow-hidden shadow-lg bg-zinc-50'>
+      <figure className='w-1/2 max-w-3xl rounded-lg overflow-hidden shadow-lg bg-zinc-50 my-4'>
           <Image
             src={url}
             alt="A cat."
@@ -76,7 +76,7 @@ function Cat({url, fact}) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
@@ -92,8 +92,6 @@ function Cat({url, fact}) {
                     </div>
                   ))
                 }
-
-
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -109,7 +107,9 @@ export default function Cats() {
   const {data: facts} = useQuery('cat_facts', getCatFacts);
 
   return (
-    <div className='flex flex-col items-center gap-y-10 my-5'>
+    <div className='bg-gradient-to-b from-sky-300 to-indigo-100 m-0'>
+      <h1 class="mb-4 text-center align-bottom font-bold text-gray-900 text-4xl md:text-5xl lg:text-6xl dark:text-white">Cat Fanclub</h1>
+      <div className='flex flex-col items-center'>
       {urls?.map((url, index) => (
         <Cat
           url={url}
@@ -118,5 +118,7 @@ export default function Cats() {
         />
       ))}
     </div>
+  </div>
+
   );
 }
