@@ -1,5 +1,7 @@
 import { Inter } from 'next/font/google'
 import { useState, useEffect } from 'react'
+import { Dialog } from '@headlessui/react'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +16,15 @@ function getCatFacts() {
 function Cat({url, fact}) {
   return (
     <figure className='w-1/2 max-w-3xl'>
-        <img src={url} alt="A cat." className='w-full object-cover'/>
+        <Image
+          src={url}
+          alt="A cat."
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full object-cover"
+        />
+        {/* <img src={url} alt="A cat." className='w-full object-cover'/> */}
         <figcaption className='text-left'>{fact}</figcaption>
     </figure>
   );
@@ -41,6 +51,7 @@ export default function Cats() {
         <Cat
           url={url}
           fact={facts.data[index]}
+          key={index}
         />
       ))}
     </div>
