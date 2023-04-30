@@ -4,6 +4,7 @@ import { useQuery } from 'react-query'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { supabase } from '../supabaseClient';
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -107,18 +108,24 @@ export default function Cats() {
   const {data: facts} = useQuery('cat_facts', getCatFacts);
 
   return (
-    <div className='bg-gradient-to-b from-sky-300 to-indigo-100 m-0'>
-      <h1 class="mb-4 text-center align-bottom font-bold text-sky-50 text-4xl md:text-5xl lg:text-6xl">Cat Fanclub</h1>
-      <div className='flex flex-col items-center'>
-      {urls?.map((url, index) => (
-        <Cat
-          url={url}
-          fact={facts?.data[index]}
-          key={index}
-        />
-      ))}
-    </div>
-  </div>
-
+    <>
+      <Head>
+        <title>Cat Fanclub</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="A page for all your cat pic needs." />
+      </Head>
+      <div className='bg-gradient-to-b from-sky-300 to-indigo-100 m-0'>
+        <h1 class="mb-4 text-center align-bottom font-bold text-sky-50 text-4xl md:text-5xl lg:text-6xl">Cat Fanclub</h1>
+        <div className='flex flex-col items-center'>
+          {urls?.map((url, index) => (
+            <Cat
+              url={url}
+              fact={facts?.data[index]}
+              key={index}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
