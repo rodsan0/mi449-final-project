@@ -7,7 +7,7 @@ import { supabase } from '../supabaseClient';
 const inter = Inter({ subsets: ['latin'] })
 
 function getCatUrls() {
-  return fetch('http://shibe.online/api/cats?count=10').then(res => res.json());
+  return fetch('https://shibe.online/api/cats?count=10').then(res => res.json());
 }
 
 function getCatFacts() {
