@@ -108,7 +108,7 @@ export default function Cats() {
 
   return (
     <div className='bg-gradient-to-b from-sky-300 to-indigo-100 m-0'>
-      <h1 class="mb-4 text-center align-bottom font-bold text-gray-900 text-4xl md:text-5xl lg:text-6xl dark:text-white">Cat Fanclub</h1>
+      <h1 class="mb-4 text-center align-bottom font-bold text-sky-50 text-4xl md:text-5xl lg:text-6xl">Cat Fanclub</h1>
       <div className='flex flex-col items-center'>
       {urls?.map((url, index) => (
         <Cat
