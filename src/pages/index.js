@@ -88,7 +88,7 @@ function Cat({url, fact}) {
 
                 {
                   comments?.map(row => (
-                    <div className='grid grid-cols-3 gap-4 auto-cols-max'>
+                    <div key={row.id} className='grid grid-cols-3 gap-4 auto-cols-max'>
                       <p className="mt-2 text-sm text-gray-500 col-span-1 text-violet-400">&#64;{row.username}&#58;</p>
                       <p className="mt-2 text-sm text-gray-500 col-span-2 text-violet-900">{row.comment}</p>
                     </div>
